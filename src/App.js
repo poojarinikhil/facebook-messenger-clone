@@ -7,7 +7,7 @@ import Message from './Message';
 
 function App() {
   const[input,setInput] = useState('')
-  const[messages,setmessage] = useState(['hello','hi'])
+  const[messages,setmessage] = useState([{username: 'nikhil', text:'hey'},{username:"vaibhav", text:'whatsup'}])
   const[username, setUsername]= useState("");
   useEffect(()=> {
     setUsername(prompt("Please enter your name"))
@@ -16,7 +16,7 @@ function App() {
   // console.log(messages)
   const sendMessage = (event)=>{
     event.preventDefault();
-    setmessage([...messages,input])
+    setmessage([...messages,{username: username, text: input}])
     setInput('');
   }
   return (
@@ -32,7 +32,7 @@ function App() {
       </form>
       {
         messages.map(messages =>(
-          <Message text={messages}/>
+          <Message username={messages.username}text={messages.text}/>
         ))
       }
     </div>
